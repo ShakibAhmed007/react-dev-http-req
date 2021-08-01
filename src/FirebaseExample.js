@@ -14,7 +14,9 @@ const FirebaseExample = () => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch('https://swapi.dev/api/films/');
+      const response = await fetch(
+        'https://dev-http-default-rtdb.firebaseio.com/test_data.json'
+      );
       if (!response.ok) {
         throw new Error('Something went wrong');
       }
