@@ -4,27 +4,36 @@ import './style.css';
 export default function App() {
   // movies state
   const [movies, setMovies] = useState([]);
-
   // loading state
   const [isLoading, setIsLoading] = useState(false);
+  // error state
+  const [error, setError] = useState(null);
 
   // req
   async function fetchMovieHandler() {
     setIsLoading(true);
-    const response = await fetch('https://swapi.dev/api/films/');
-    const data = await response.json();
-    const transformedData = data.results.map(movie => {
-      return {
-        id: movie.episode_id,
-        title: movie.title
-      };
-    });
-    setMovies(transformedData);
+    setError(null);
+    try {
+      const response = await fetch('https://swapi.dev/api/films/');
+      if (!response.ok) {
+        throw new Error('Something went wrong');
+      }
+      const data = await response.json();
+      const transformedData = data.results.map(movie => {
+        return {
+          id: movie.episode_id,
+          title: movie.title
+        };
+      });
+      setMovies(transformedData);
+    } catch (error) {
+      setError(error.message);
+    }
     setIsLoading(false);
   }
 
   let data = <p>Loading .... </p>;
-  if (!isLoading) {
+  if (!isLoading && error === null) {
     data = movies.map(movie => {
       return (
         <div>
@@ -33,6 +42,8 @@ export default function App() {
         </div>
       );
     });
+  } else if (error !== null) {
+    data = <p>{error}</p>;
   }
 
   return (
