@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './style.css';
-import FirebaseExample from './FirebaseExample';
 
-export default function App() {
+const FirebaseExample = () => {
   // movies state
   const [movies, setMovies] = useState([]);
   // loading state
@@ -54,11 +53,10 @@ export default function App() {
 
   return (
     <div>
-      <h1>React Http Requests</h1>
-      <button onClick={fetchMovieHandler}> Fetch Movies </button>
+      <button onClick={fetchMovieHandler}> Fetch Data </button>
       {data}
-      <h1>FireBase Example</h1>
-      <FirebaseExample />
     </div>
   );
-}
+};
+
+export default FirebaseExample;
