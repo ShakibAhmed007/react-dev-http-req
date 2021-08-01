@@ -35,25 +35,6 @@ const FirebaseExample = () => {
     setIsLoading(false);
   }, []);
 
-  // load data whenever component loads
-  useEffect(() => {
-    fetchMovieHandler();
-  }, [fetchMovieHandler]);
-
-  let data = <p>Loading .... </p>;
-  if (!isLoading && error === null) {
-    data = movies.map(movie => {
-      return (
-        <div>
-          <div>{movie.id}</div>
-          <div>{movie.title}</div>
-        </div>
-      );
-    });
-  } else if (error !== null) {
-    data = <p>{error}</p>;
-  }
-
   const saveDataHandler = async () => {
     const obj = {
       id: 1,
@@ -66,6 +47,25 @@ const FirebaseExample = () => {
         'Content-Type': 'application/json'
       }
     });
+
+    // load data whenever component loads
+    useEffect(() => {
+      fetchMovieHandler();
+    }, [fetchMovieHandler]);
+
+    let data = <p>Loading .... </p>;
+    if (!isLoading && error === null) {
+      data = movies.map(movie => {
+        return (
+          <div>
+            <div>{movie.id}</div>
+            <div>{movie.title}</div>
+          </div>
+        );
+      });
+    } else if (error !== null) {
+      data = <p>{error}</p>;
+    }
   };
 
   return (
