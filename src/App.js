@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './style.css';
 
 export default function App() {
@@ -10,7 +10,7 @@ export default function App() {
   const [error, setError] = useState(null);
 
   // req
-  async function fetchMovieHandler() {
+  const fetchMovieHandler = useCallback(async () => {
     setIsLoading(true);
     setError(null);
     try {
@@ -30,7 +30,12 @@ export default function App() {
       setError(error.message);
     }
     setIsLoading(false);
-  }
+  }, []);
+
+  // load data whenever component loads
+  useEffect(() => {
+    fetchMovieHandler();
+  }, [fetchMovieHandler]);
 
   let data = <p>Loading .... </p>;
   if (!isLoading && error === null) {
