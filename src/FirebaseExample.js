@@ -21,13 +21,14 @@ const FirebaseExample = () => {
         throw new Error('Something went wrong');
       }
       const data = await response.json();
-      const transformedData = data.results.map(movie => {
-        return {
-          id: movie.episode_id,
-          title: movie.title
-        };
-      });
-      setMovies(transformedData);
+      const dataArr = [];
+      for (const key in data) {
+        dataArr.push({
+          id: data[key].id,
+          title: data[key].title
+        });
+      }
+      setMovies(dataArr);
     } catch (error) {
       setError(error.message);
     }
@@ -53,8 +54,23 @@ const FirebaseExample = () => {
     data = <p>{error}</p>;
   }
 
+  const saveDataHandler = async () => {
+    const obj = {
+      id: 1,
+      title: 'Test Data 1'
+    };
+    fetch('https://dev-http-default-rtdb.firebaseio.com/test_data.json', {
+      method: 'POST',
+      body: JSON.stringify(obj),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+  };
+
   return (
     <div>
+      <button onClick={saveDataHandler}> Save Data </button>
       <button onClick={fetchMovieHandler}> Fetch Data </button>
       {data}
     </div>
