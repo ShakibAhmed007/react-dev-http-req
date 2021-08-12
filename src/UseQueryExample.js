@@ -1,14 +1,11 @@
 import React, { useEffect } from 'react';
 import { useQuery } from 'react-query';
 
-const UseQueryExample = async () => {
-  const fetchMovieHandler = async () => {
-    const response = await fetch(
+const UseQueryExample = () => {
+  const fetchMovieHandler = () => {
+    const response = fetch(
       'https://dev-http-default-rtdb.firebaseio.com/test_data.json'
     );
-    if (!response.ok) {
-      throw new Error('Something went wrong');
-    }
     const data = await response.json();
     const dataArr = [];
     for (const key in data) {
@@ -24,7 +21,7 @@ const UseQueryExample = async () => {
 
   useEffect(() => {
     fetchMovieHandler();
-  }, []);
+  }, [fetchMovieHandler]);
 
   // console.log(isLoading, isError, data, error);
   return <div>Use Query Component Works !!!</div>;
