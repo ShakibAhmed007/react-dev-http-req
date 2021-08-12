@@ -2,17 +2,22 @@ import React, { useEffect } from 'react';
 import { useQuery } from 'react-query';
 
 const UseQueryExample = () => {
-  const { refetch, data } = useQuery('repoData', () =>
-    fetch('https://api.github.com/repos/tannerlinsley/react-query').then(res =>
-      res.json()
-    )
-  );
+  const fetchMovies = () => {
+    fetch('https://api.github.com/repos/tannerlinsley/react-query').then(
+      res => {
+        console.log('data ---', res);
+        // return res.json();
+      }
+    );
+  };
+
+  // const { refetch, data } = useQuery('repoData', fetchMovies);
+
   useEffect(() => {
     console.log('Use Effect Hooks !!!');
-    refetch();
+    fetchMovies();
   }, []);
 
-  console.log('data ---', data);
   return <div>Use Query Component Works !!!</div>;
 };
 
