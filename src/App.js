@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './style.css';
 import FirebaseExample from './FirebaseExample';
-import UseQueryExample from './UseQueryExample';
 
 export default function App() {
   // movies state
