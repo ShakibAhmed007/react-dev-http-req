@@ -1,21 +1,24 @@
 import React, { useEffect } from 'react';
 import { useQuery } from 'react-query';
+import axios from 'axios';
 
 const UseQueryExample = () => {
-  const fetchMovieHandler = async () => {
-    const response = await fetch(
-      'https://dev-http-default-rtdb.firebaseio.com/test_data.json'
-    );
-    const data = await response.json();
-    console.log(data);
+  const fetchMovieHandler = () => {
+    const response = axios
+      .get('https://dev-http-default-rtdb.firebaseio.com/test_data.json')
+      .then(res => {
+        console.log(res.data);
+        return res.data;
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   const { isLoading, isError, data, error } = useQuery(
-    'repoData',
+    ['repoData'],
     fetchMovieHandler
   );
-
-  // console.log(isLoading, isError, data, error);
   return <div>Use Query Component Works !!!</div>;
 };
 
