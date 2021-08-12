@@ -5,19 +5,23 @@ const UseQueryExample = () => {
   const fetchMovies = () => {
     fetch('https://api.github.com/repos/tannerlinsley/react-query').then(
       res => {
-        console.log('data ---', res);
-        // return res.json();
+        const data = res.json();
+        const dataArr = [];
+        for (const key in data) {
+          dataArr.push({
+            id: data[key].id,
+            title: data[key].title
+          });
+        }
+        console.log('data ---', dataArr);
+        return res.json();
       }
     );
   };
 
-  // const { refetch, data } = useQuery('repoData', fetchMovies);
+  const { isLoading, isError, data, error } = useQuery('repoData', fetchMovies);
 
-  useEffect(() => {
-    console.log('Use Effect Hooks !!!');
-    fetchMovies();
-  }, []);
-
+  // console.log(isLoading, isError, data, error);
   return <div>Use Query Component Works !!!</div>;
 };
 
