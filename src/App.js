@@ -55,11 +55,11 @@ export default function App() {
 
   return (
     <div>
-      <h1>React Http Requests</h1>
+      {/* <h1>React Http Requests</h1>
       <button onClick={fetchMovieHandler}> Fetch Movies </button>
       {data}
       <h1>FireBase Example</h1>
-      <FirebaseExample />
+      <FirebaseExample /> */}
       <h1>useQuery Exapmeple</h1>
       <UseQueryExample />
     </div>
