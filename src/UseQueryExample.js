@@ -6,7 +6,7 @@ const fetchMovie = async () => {
   const response = await axios
     .get('https://dev-http-default-rtdb.firebaseio.com/test_data.json')
     .then(res => {
-      // console.log(res.data);
+      console.log(res.data);
       return res.data;
     })
     .catch(error => {
