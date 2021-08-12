@@ -7,14 +7,7 @@ const UseQueryExample = () => {
       'https://dev-http-default-rtdb.firebaseio.com/test_data.json'
     );
     const data = await response.json();
-    const dataArr = [];
-    for (const key in data) {
-      dataArr.push({
-        id: data[key].id,
-        title: data[key].title
-      });
-    }
-    console.log(dataArr);
+    console.log(data);
   };
 
   const { isLoading, isError, data, error } = useQuery(
