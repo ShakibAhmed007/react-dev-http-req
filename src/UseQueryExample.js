@@ -23,7 +23,7 @@ const UseQueryExample = async () => {
   // const { isLoading, isError, data, error } = useQuery('repoData', fetchMovies);
 
   useEffect(() => {
-    fetchMovies();
+    fetchMovieHandler();
   }, []);
 
   // console.log(isLoading, isError, data, error);
