@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import axios from 'axios';
 
 const UseQueryExample = () => {
-  const fetchMovieHandler = () => {
+  const fetchMovie = () => {
     const response = axios
       .get('https://dev-http-default-rtdb.firebaseio.com/test_data.json')
       .then(res => {
@@ -17,7 +17,7 @@ const UseQueryExample = () => {
 
   const { isLoading, isError, data, error } = useQuery(
     ['repoData'],
-    fetchMovieHandler
+    fetchMovie
   );
   return <div>Use Query Component Works !!!</div>;
 };
