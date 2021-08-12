@@ -16,7 +16,7 @@ const UseQueryExample = () => {
   useEffect(() => {
     console.log('Use Effect Hooks !!!');
     getData();
-  });
+  }, []);
 
   return <div>Use Query Component Works !!!</div>;
 };
