@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './style.css';
 import FirebaseExample from './FirebaseExample';
+import UseQueryExample from './UseQueryExample';
 
 export default function App() {
   // movies state
@@ -58,7 +59,9 @@ export default function App() {
       <button onClick={fetchMovieHandler}> Fetch Movies </button>
       {data}
       <h1>FireBase Example</h1>
-      <FirebaseExample />
+      {/* <FirebaseExample /> */}
+      <h1>useQuery Exapmeple</h1>
+      <UseQueryExample />
     </div>
   );
 }
