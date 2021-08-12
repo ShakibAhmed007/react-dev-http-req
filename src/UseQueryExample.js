@@ -2,12 +2,14 @@ import React, { useEffect } from 'react';
 import { useQuery } from 'react-query';
 
 const UseQueryExample = () => {
-  const { refetch, isLoading, error, data } = useQuery('repoData', () => {
-    fetch('https://dev-http-default-rtdb.firebaseio.com/test_data.json').then(
-      res => {
+  const { refetch } = useQuery('repoData', () => {
+    fetch('https://dev-http-default-rtdb.firebaseio.com/test_data.json')
+      .then(res => {
         console.log('use Query Response', res);
-      }
-    );
+      })
+      .catch(error => {
+        console.log(error);
+      });
   });
 
   useEffect(() => {
